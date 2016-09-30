@@ -1,5 +1,11 @@
 package Logic;
 
+/**
+ * 
+ * @author Andres Rojas
+ *
+ */
+
 public class Moto {
 	private int posicionX;
 	private int posicionY;

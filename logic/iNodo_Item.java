@@ -1,5 +1,11 @@
 package Logic;
 
+/**
+ * 
+ * @author Andres Rojas
+ *
+ */
+
 public class iNodo_Item {
 	private iNodo_Item sig;
 	private iNodo_Item ante;

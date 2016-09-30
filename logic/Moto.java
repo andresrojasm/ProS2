@@ -7,6 +7,7 @@ public class Moto {
 	private int velocidad;
 	private int combustible;
 	private boolean escudo;
+	private boolean vivo;
 	private List_Item items;
 	private List_Poder poder;
 	
@@ -17,6 +18,7 @@ public class Moto {
 		this.velocidad = (int) Math.random()*11;
 		this.combustible = (int) Math.random()*101;
 		this.escudo = false;
+		this.vivo = true;
 		this.items = new List_Item();
 		this.poder = new List_Poder();
 		
@@ -81,24 +83,58 @@ public class Moto {
 		this.escudo = escudo;
 		
 	}
+	
 
-	public List_Item getItems() {
-		return items;
+	public boolean isVivo() {
+		return vivo;
+	}
+
+	public void setVivo(boolean vivo) {
+		this.vivo = vivo;
+	}
+
+	public iNodo_Item getItems() {
+		return items.show();
 		
 	}
 
-	public void setItems(List_Item items) {
-		this.items = items;
-		
-	}
-
-	public List_Poder getPoder() {
-		return poder;
+	public iNodo_Poder getPoder() {
+		return poder.peek();
 		
 	}
 
 	public void setPoder(List_Poder poder) {
 		this.poder = poder;
+		
+	}
+	
+	public void rotarItem(){
+		items.rotar_Item();
+		
+	}
+	
+	public void rotarPoder(){
+		poder.rotar_Poder();
+	}
+	
+	public void aplicar_Estela(Nodo_Estela nodo){
+		this.tama_Estela += nodo.getTama_o();
+		
+	}
+	
+	public void aplicar_Bomba(){
+		this.vivo = false;
+		
+	}
+	
+	public void aplicar_Combustible(Nodo_Combustible nodo){
+		if((combustible + nodo.getCombustible()) >= 100){
+			this.combustible = 100;
+			
+		}else{
+			this.combustible += nodo.getCombustible();
+			
+		}
 		
 	}
 

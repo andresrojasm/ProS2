@@ -46,8 +46,7 @@ public class List_Item {
 			this.head = this.tail = item;
 			
 		}else{
-			item.setAnte(this.tail);// = this.tail;
-			this.tail.setSig(item);// = item;
+			item.setAnte(this.tail);
 			this.tail = item;
 			
 		}
@@ -69,9 +68,18 @@ public class List_Item {
 		
 	}
 	
-	public void rotar_Item(){
-		
-		
+	public iNodo_Item show(){
+		return head;
 	}
-	
+
+	public void rotar_Item(){
+		if (isEmpty()){}
+		else{
+			tail.setSig(head);
+			tail.getAnte().setSig(null);
+			head.setAnte(tail);
+			tail = tail.getAnte();
+			head = head.getAnte();
+		}
+	}
 }

@@ -1,33 +1,33 @@
 package Logic;
 
-public class iNodo_Item {
-	private iNodo_Item sig;
-	private iNodo_Item ante;
+public class iNodo_Poder {
+	private iNodo_Poder sig;
+	private iNodo_Poder ante;
 	private String dato;
 	
-	public iNodo_Item(String dato){
+	public iNodo_Poder(String dato){
 		this.sig = null;
 		this.ante = null;
 		this.dato = dato;
 		
 	}
 
-	public iNodo_Item getSig() {
+	public iNodo_Poder getSig() {
 		return sig;
 		
 	}
 
-	public void setSig(iNodo_Item sig) {
+	public void setSig(iNodo_Poder sig) {
 		this.sig = sig;
 		
 	}
 
-	public iNodo_Item getAnte() {
+	public iNodo_Poder getAnte() {
 		return ante;
 		
 	}
 
-	public void setAnte(iNodo_Item ante) {
+	public void setAnte(iNodo_Poder ante) {
 		this.ante = ante;
 		
 	}
@@ -41,5 +41,5 @@ public class iNodo_Item {
 		this.dato = dato;
 		
 	}
-	
+
 }

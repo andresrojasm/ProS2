@@ -1,5 +1,11 @@
 package Logic;
 
+/**
+ * 
+ * @author Andres Rojas
+ *
+ */
+
 public class Nodo_Estela extends iNodo_Item {
 	private int tama_o = (int) Math.random()*11;
 	

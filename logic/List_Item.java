@@ -1,5 +1,11 @@
 package Logic;
 
+/**
+ * 
+ * @author Andres Rojas
+ *
+ */
+
 public class List_Item {
 	private iNodo_Item head;
 	private iNodo_Item tail;

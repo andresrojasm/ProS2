@@ -1,8 +1,8 @@
 package Logic;
 
 public class List_Item {
-	private Nodo_Item head;
-	private Nodo_Item tail;
+	private iNodo_Item head;
+	private iNodo_Item tail;
 	
 	public List_Item(){
 		this.head = null;
@@ -10,6 +10,26 @@ public class List_Item {
 		
 	}
 	
+	public iNodo_Item getHead() {
+		return head;
+		
+	}
+
+	public void setHead(iNodo_Item head) {
+		this.head = head;
+		
+	}
+
+	public iNodo_Item getTail() {
+		return tail;
+		
+	}
+
+	public void setTail(iNodo_Item tail) {
+		this.tail = tail;
+		
+	}
+
 	public boolean isEmpty(){
 		if(head == null && tail == null){
 			return true;
@@ -21,28 +41,36 @@ public class List_Item {
 		
 	}
 	
-	public void enqueue(Nodo_Item item){
+	public void enqueue(iNodo_Item item){
 		if (isEmpty()){
 			this.head = this.tail = item;
 			
 		}else{
-			item.ante = this.tail;
-			this.tail.sig = item;
+			item.setAnte(this.tail);// = this.tail;
+			this.tail.setSig(item);// = item;
 			this.tail = item;
+			
 		}
 		
 	}
 	
-	public Nodo_Item dequeue(){
-		if (isEmpty()){
-			return null;
+	public iNodo_Item dequeue(){
+		iNodo_Item tmp = head;
+		
+		if (head == tail){
+			head = tail = null;
+			return tmp;
 			
 		}else{
-			Nodo_Item tmp = head;
 			this.head = head.getSig();
 			return tmp;
 			
 		}
+		
+	}
+	
+	public void rotar_Item(){
+		
 		
 	}
 	

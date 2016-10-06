@@ -29,7 +29,7 @@ public class Matriz {
 				start = end = new Columna();
 				CrearColumna(start, m);
 				System.out.println(" ");
-				contadorx += 30;
+				contadorx += 20;
 			}
 			else{
 				Columna tmp = new Columna();
@@ -46,7 +46,7 @@ public class Matriz {
 				end.setNext(tmp);
 				end = tmp;
 				System.out.println(" ");
-				contadorx += 30;
+				contadorx += 20;
 			}
 			
 		}
@@ -60,7 +60,7 @@ public class Matriz {
 	private void CrearColumna(Columna pcolumna , int pm) {
 		for( int i = 0; i < pm; i++){
 			pcolumna.Insert(contadorx, contadory);
-			contadory += 30;
+			contadory += 20;
 		}
 		contadory = 10;
 	}

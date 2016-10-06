@@ -11,15 +11,14 @@ import java.util.LinkedList;
 import GameServer.ServerUI.STATE;
 import Matrix.Matriz;
 import Matrix.Nodo;
-import Server.Server;
+import Server.ServerConnection;
 
 public class ServerMenu extends MouseAdapter implements ServerConstants{
 	
 	private ServerUI UI;
 	private ServerHandler handler;
-	private int matrizM = 6;
-	private int matrizN = 6;
-	
+	private int matrizM = 10;
+	private int matrizN = 10;
 	
 	/**
 	 * constructor
@@ -53,40 +52,45 @@ public class ServerMenu extends MouseAdapter implements ServerConstants{
 			for( int i = 0; i < matrizM; i++){
 				for( int j = 0; j < matrizN; j++){
 					Nodo tmp = UI.matriz.Search(i,j);
-					handler.addObject(new GamePosition(tmp.getX(),tmp.getY(),ID.Field));
+					handler.getObjects().add(new GamePosition(tmp.getX(),tmp.getY(),ID.Field));
 				}
 			}
-			Nodo tmp1 = UI.matriz.Search(0,0);
-			handler.addObject(new Player(tmp1));
+			
 			
 			
 			
 		}
 		
+		/** boton de + para el M de la matriz*/
 		if(mouseOver(mx, my, 350, 350, 30, 20)){
-			if (matrizM ==18){
+			if (matrizM ==26){
 				matrizM += 0;
 			}else matrizM +=1;
 		}
+		/** boton de - para el M de la matriz*/
 		if(mouseOver(mx, my, 350, 380, 30, 20)){
 			if (matrizM ==4){
 				matrizM -= 0;
 			}else matrizM -=1;
 		}
+		/** boton de + para el N de la matriz*/
 		if(mouseOver(mx, my, 430, 350, 30, 20)){
-			if (matrizN ==15){
+			if (matrizN ==22){
 				matrizN += 0;
 			}else matrizN +=1;
 		}
+		/** boton de - para el N de la matriz*/
 		if(mouseOver(mx, my, 430, 380, 30, 20)){
 			if (matrizN ==4){
 				matrizN -= 0;
 			}else matrizN -=1;
 		}
+		/**Boton de salida */
 		if(mouseOver(mx, my, 590, 420, 80, 40)){
 			System.exit(1);
 		}
 		}
+		/**boton de volver */ 
 		if(mouseOver(mx, my, 590, 420, 80, 40)){
 			UI.gameState = STATE.Menu;
 			handler.getObjects().clear();

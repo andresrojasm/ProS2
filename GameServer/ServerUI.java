@@ -8,8 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
+
 import Matrix.Matriz;
-import Server.Server;
+import Server.ServerConnection;
 
 /**
  * Clase que contiene el main del servidor del juego, inicializa la interfaz del servidor
@@ -26,8 +27,8 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 	private ServerMenu menu;
 	private int matrizM;
 	private int matrizN;
-	public Server server;
-	
+	public ServerConnection server;
+	public boolean player1 = false;
 	
 	/**
 	 * enumerador con los estados de la interfaz del servidor
@@ -50,10 +51,12 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 	public ServerUI() throws IOException{
 		
 		handler = new ServerHandler();
+		this.addKeyListener(new KeyInput(handler));
 		menu = new ServerMenu(this, handler);
 		this.addMouseListener(menu);
 		new ServerWindow(this);
-		server = new Server();
+		server = new ServerConnection(this, matrizM, matrizM);
+		
 		
 		
 		if (gameState == STATE.Game){
@@ -62,7 +65,7 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 			matriz = new Matriz(matrizM, matrizN);
 			matriz.SearchAll(matrizM, matrizN);
 			
-			server = new Server();
+			server = new ServerConnection(this,matrizM,matrizN);
 			server.RunServer();
 			
 			
@@ -139,7 +142,7 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null){
-			this.createBufferStrategy(3);
+			this.createBufferStrategy(2);
 			return;
 		}
 		
@@ -161,6 +164,7 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 			g.drawString("BACK",600,450);
 		}
 		else if (gameState == STATE.Menu){
+			handler.getObjects().clear();
 			menu.render(g);
 		}
 		
@@ -193,6 +197,44 @@ public class ServerUI extends Canvas implements Runnable, ServerConstants{
 	public static void main(String args[]) throws IOException{
 		
 		new ServerUI();
+	}
+
+	/**
+	 * obtiene el valor M de la matriz
+	 * @return
+	 */
+	public int getMatrizM() {
+		return matrizM;
+	}
+	/**
+	 * Define el valor M de la matriz
+	 * @param matrizM
+	 */
+	public void setMatrizM(int matrizM) {
+		this.matrizM = matrizM;
+	}
+
+	/**
+	 * obtiene el valor N de la matriz
+	 * @return
+	 */
+	public int getMatrizN() {
+		return matrizN;
+	}
+	/**
+	 * Define el valor N de la matriz
+	 * @param matrizM
+	 */
+	public void setMatrizN(int matrizN) {
+		this.matrizN = matrizN;
+	}
+
+	/**
+	 * retorna el handler del Servidor
+	 * @return
+	 */
+	public ServerHandler getHandler() {
+		return handler;
 	}
 
 

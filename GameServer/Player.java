@@ -12,21 +12,22 @@ import Matrix.Nodo;
  * @author pablo
  *
  */
-public class Player extends ServerUIObject{
-	
+public class Player extends ServerUIObject {
 	private Nodo currentPos;
 	private Nodo previousPos;
-	private String direction = "right";
 	private Trail trail;
 	private Timer timer = new Timer();
 	private long beginTime, timeTaken;
+	private int speed = 6;
+	private int speedcount=0;
+	
     
 	
 	/**
 	 * constructor
 	 * @param nodo	posicion en donde se creara el objeto
 	 */
-	public Player(Nodo nodo){
+	public Player(Nodo nodo, String pdirection){
 		
 		currentPos = nodo;
 		previousPos = nodo;
@@ -36,8 +37,10 @@ public class Player extends ServerUIObject{
 		trail = new Trail();
 		trail.setNext(new Trail());
 		
+		direction = pdirection;
 		
-		beginTime = System.nanoTime();
+		
+		
 		
 		 
 	}
@@ -48,8 +51,10 @@ public class Player extends ServerUIObject{
 	 * se encarga de actualizar las acciones del objeto
 	 */
 	public void tick() {
+		
 		Move();
-
+		
+	
 	}	
 		
 	
@@ -63,7 +68,7 @@ public class Player extends ServerUIObject{
 	 */
 	public void render(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect(x, y, 30, 30);
+		g.fillRect(x, y, 20, 20);
 		trail.render(g);
 		
 	}
@@ -78,10 +83,15 @@ public class Player extends ServerUIObject{
 	 */
 	public void Move(){
 		
+		speedcount++;
+		
+		if (speedcount == speed){
 		
 		if (direction == "right"){
 			if (currentPos.getRight()==null){
-				direction = "down";
+				//direction = "down";
+				currentPos = currentPos;
+				speedcount=0;
 			}else{ 
 				Nodo tmp = currentPos;
 				currentPos = currentPos.getRight();
@@ -89,12 +99,15 @@ public class Player extends ServerUIObject{
 				this.setX(currentPos.getX());
 				this.setY(currentPos.getY());
 				trail.setCurrentPos(previousPos);
+				speedcount=0;
 			}
 				
 		}
 		if (direction == "down"){
 			if (currentPos.getDown()==null){
-				direction = "left";
+				//direction = "left";
+				currentPos = currentPos;
+				speedcount=0;
 			}else{ 
 				Nodo tmp = currentPos;
 				currentPos = currentPos.getDown();
@@ -102,12 +115,15 @@ public class Player extends ServerUIObject{
 				this.setX(currentPos.getX());
 				this.setY(currentPos.getY());
 				trail.setCurrentPos(previousPos);
+				speedcount=0;
 			}
 				
 		}
 		if (direction == "left"){
 			if (currentPos.getLeft()==null){
-				direction = "up";
+				//direction = "up";
+				currentPos = currentPos;
+				speedcount=0;
 			}else{ 
 				Nodo tmp = currentPos;
 				currentPos = currentPos.getLeft();
@@ -115,12 +131,15 @@ public class Player extends ServerUIObject{
 				this.setX(currentPos.getX());
 				this.setY(currentPos.getY());
 				trail.setCurrentPos(previousPos);
+				speedcount=0;
 			}
 				
 		}
 		if (direction == "up"){
 			if (currentPos.getUp()==null){
-				direction = "right";
+				//direction = "right";
+				currentPos = currentPos;
+				speedcount=0;
 			}else{ 
 				Nodo tmp = currentPos;
 				currentPos = currentPos.getUp();
@@ -128,10 +147,18 @@ public class Player extends ServerUIObject{
 				this.setX(currentPos.getX());
 				this.setY(currentPos.getY());
 				trail.setCurrentPos(previousPos);
+				speedcount=0;
 			}
 				
 		}
+		
+		}	
+		
 	}
+
+
+	
+	
 
 
 

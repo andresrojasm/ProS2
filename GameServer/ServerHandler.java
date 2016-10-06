@@ -11,13 +11,19 @@ import java.util.LinkedList;
 public class ServerHandler {
 	
 	LinkedList<ServerUIObject> objects = new LinkedList<ServerUIObject>();
-	
+	LinkedList<ServerUIObject> map = new LinkedList<ServerUIObject>();
+
 	/**
 	 * se encarga de actualizar las funciones de cada objeto
 	 */
 	public void tick(){
 		for (int i = 0; i <objects.size(); i++){
 			ServerUIObject temp = objects.get(i);
+			
+			temp.tick();
+		}
+		for (int i = 0; i <map.size(); i++){
+			ServerUIObject temp = map.get(i);
 			
 			temp.tick();
 		}
@@ -30,9 +36,25 @@ public class ServerHandler {
 	 */
 	public void render(Graphics g){
 		for (int i = 0; i <objects.size(); i++){
-			ServerUIObject temp = objects.get(i);
+			try{
+				ServerUIObject temp = objects.get(i);
+				
+				temp.render(g);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			
-			temp.render(g);
+			
+		}
+		for (int i = 0; i <map.size(); i++){
+			try{
+				ServerUIObject temp = map.get(i);
+				
+				temp.render(g);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
 			
 		}
 		
@@ -62,5 +84,7 @@ public class ServerHandler {
 		return objects;
 	}
 	
-	
+	public LinkedList<ServerUIObject> getMap() {
+		return map;
+	}
 }

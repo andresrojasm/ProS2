@@ -41,7 +41,7 @@ public class GamePosition extends ServerUIObject{
 	public void render(Graphics g) {
 		
 		g.setColor(Color.white);
-		g.drawRect(x, y, 30, 30);
+		g.drawRect(x, y, 20, 20);
 	}
 
 }

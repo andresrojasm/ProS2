@@ -11,13 +11,10 @@ public abstract class ServerUIObject {
 
 	protected int x, y;
 	protected ID id;
+	protected String state;
+	protected String direction;
 	
 	
-	/*public ServerUIObject(int x, int y, ID id){
-		this.x = x;
-		this.y = y;
-		this.id = id;
-	}*/
 	
 	/**
 	 * se encarga de las acciones del objeto
@@ -75,9 +72,34 @@ public abstract class ServerUIObject {
 	public ID getID(){
 		return id;
 	}
+
+	/**
+	 * retorna el estado del objeto
+	 * @return
+	 */
+	public String getState() {
+		return state;
+	}
+	
+	/**
+	 * Define el estado del objeto
+	 * @param pstate
+	 */
+	public void setState(String pstate){
+		state = pstate;
+	}
 	
 	
-	
-	
-	
+
+	public String getDirection() {
+		return direction;
+	}
+
+
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+
 }

@@ -39,7 +39,7 @@ public class Trail extends ServerUIObject{
 	 */
 	public void render(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect(x, y, 30, 30);
+		g.fillRect(x, y, 20, 20);
 		if(next!= null)
 			next.render(g);
 		

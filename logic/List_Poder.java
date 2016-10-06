@@ -1,11 +1,5 @@
 package Logic;
 
-/**
- * 
- * @author Andres Rojas
- *
- */
-
 public class List_Poder {
 	private iNodo_Poder head;
 	private iNodo_Poder tail;

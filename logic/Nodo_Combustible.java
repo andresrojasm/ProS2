@@ -13,6 +13,11 @@ public class Nodo_Combustible extends iNodo_Item{
 		super("itemCombustible");
 	}	
 	
+	/**
+	 * 
+	 * @return int
+	 */
+	
 	public int getCombustible(){
 		return combustible;
 	}

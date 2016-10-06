@@ -13,6 +13,11 @@ public class Nodo_Estela extends iNodo_Item {
 		super("itemEstela");
 	}
 	
+	/**
+	 * 
+	 * @return int
+	 */
+	
 	public int getTama_o(){
 		return tama_o;
 	}
